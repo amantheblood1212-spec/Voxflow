@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VoxFlow AI | AI-Powered Business Outreach</title>
+<meta name="description" content="VoxFlow AI finds local U.S. businesses that need a better web presence, then Alex Carter, an AI voice agent, calls them for you. Outcomes are saved and interested prospects are handed to you.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VoxFlow AI">
+<meta property="og:title" content="VoxFlow AI | AI-Powered Business Outreach">
+<meta property="og:description" content="Find local leads. Alex Carter, your AI voice agent, calls them. You close the sale.">
+<meta property="og:image" content="%%ORIGIN%%/og-image.png">
+<meta property="og:url" content="%%ORIGIN%%/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f4f5f9;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e5e7ef;--acc:#4f46e5;--acc2:#7c3aed;--accink:#fff;--g:#15803d;--y:#b45309;--r:#b91c1c;--side:#0b1020;--sideink:#c3c9de;--shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0e1c;--card:#121831;--ink:#e8ecf8;--mute:#8e9ac0;--line:#222b4d;--acc:#7c83ff;--acc2:#a78bfa;--accink:#0a0e1c;--g:#5fd08a;--y:#f0c05a;--r:#ff8b8b;--side:#070a15;--shadow:0 1px 2px #0006,0 8px 24px #0004}}
+:root[data-theme="dark"]{--bg:#0a0e1c;--card:#121831;--ink:#e8ecf8;--mute:#8e9ac0;--line:#222b4d;--acc:#7c83ff;--acc2:#a78bfa;--accink:#0a0e1c;--g:#5fd08a;--y:#f0c05a;--r:#ff8b8b;--side:#070a15;--shadow:0 1px 2px #0006,0 8px 24px #0004}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+#app{display:grid;grid-template-columns:1fr;min-height:100vh}
+nav{display:flex;gap:4px;overflow-x:auto;padding:10px;background:var(--side);position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--bh,0px));z-index:5;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav .brand,nav .foot{display:none}
+nav button{display:flex;align-items:center;gap:10px;white-space:nowrap;background:none;border:0;color:var(--sideink);padding:9px 13px;border-radius:10px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer;transition:background .15s,color .15s}
+nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+nav button.on{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;box-shadow:0 4px 14px rgba(79,70,229,.4)}
+nav svg{flex:none}
+.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;flex:none}
+@media(min-width:800px){#app{grid-template-columns:256px 1fr}nav{flex-direction:column;height:calc(100vh - var(--bh,0px));top:var(--bh,0px);padding:22px 14px;overflow-y:auto;gap:3px}nav .brand{display:flex;align-items:center;gap:11px;margin:0 6px 22px;color:#fff}nav .brand b{display:block;font-size:1.02rem;letter-spacing:.07em}nav .brand small{display:block;color:var(--sideink);font-size:.7rem;opacity:.8;line-height:1.3}nav .foot{display:block;margin:auto 6px 0;padding-top:16px;color:var(--sideink);font-size:.78rem;word-break:break-all;border-top:1px solid rgba(255,255,255,.1)}nav .foot .pill{margin-bottom:8px}}
+main{padding:22px 18px 64px;max-width:1080px;width:100%;margin:0 auto}
+h2{margin:26px 0 12px;font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+#ctl+h2{font-size:1.75rem;letter-spacing:-.025em;margin-top:26px}
+h3{margin:0;font-size:1.02rem;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px;margin-bottom:8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.stat small{display:block;color:var(--mute);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em}
+.stat strong{display:block;margin-top:4px;font-size:2rem;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.top{display:flex;justify-content:space-between;gap:12px}
+.meta{color:var(--mute);font-size:.88rem;word-break:break-word}
+.badge{font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(127,127,160,.13);color:var(--ink);align-self:flex-start;white-space:nowrap}
+.badge.g{background:rgba(22,163,74,.14);color:var(--g)}.badge.r{background:rgba(220,38,38,.12);color:var(--r)}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;font-weight:700;font-size:.7rem;letter-spacing:.07em}
+.pill.on{background:rgba(22,163,74,.16);color:var(--g)}.pill.off{background:rgba(127,127,160,.18);color:var(--mute)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.bar input,.bar select{margin:0;flex:1;min-width:130px}
+main button,dialog button,#login button{font-family:inherit;font-weight:600;font-size:14px;line-height:1.2;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:transform .12s,box-shadow .15s}
+main button:hover:not(:disabled),dialog button:hover:not(:disabled){transform:translateY(-1px);box-shadow:var(--shadow)}
+main button.p,dialog button.p,#login button.p,main button.call,dialog button.call{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-color:transparent}
+main button.call,dialog button.call{font-size:16px;padding:12px 28px;box-shadow:0 4px 14px rgba(79,70,229,.35)}
+main button[data-act="start"]{background:#16a34a;color:#fff;border-color:transparent;padding:12px 28px;font-size:15px;box-shadow:0 4px 14px rgba(22,163,74,.3)}
+main button[data-act="stop"]{background:#dc2626;color:#fff;border-color:transparent;padding:12px 28px;font-size:15px;box-shadow:0 4px 14px rgba(220,38,38,.28)}
+button:disabled{opacity:.4;cursor:not-allowed}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin:4px 0 10px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acc);box-shadow:0 0 0 3px rgba(79,70,229,.18)}
+label{font-size:.8rem;font-weight:600;color:var(--mute)}
+.wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px;background:var(--card)}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:.88rem;vertical-align:top}
+th{position:sticky;top:0;background:var(--card);color:var(--mute);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+tr:last-child td{border-bottom:0}tbody tr:hover td,tr:hover td{background:rgba(127,127,160,.06)}
+dialog{border:0;border-radius:18px;background:var(--card);color:var(--ink);width:min(500px,94vw);padding:22px;max-height:90vh;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(8,12,28,.55);backdrop-filter:blur(3px)}
+.warn{border-left:4px solid var(--y);padding:10px 14px;background:var(--card);margin:0 0 14px;border-radius:8px;box-shadow:var(--shadow);font-size:.9rem}
+.empty{color:var(--mute);padding:36px 16px;text-align:center;border:1px dashed var(--line);border-radius:14px}
+.g{color:var(--g)}.y{color:var(--y)}.r{color:var(--r)}
+.logo{border-radius:12px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;display:grid;place-items:center;font-weight:700}
+
+#app{display:none}body.in #app{display:grid}#lp{display:block;background:var(--bg);color:var(--ink)}body.in #lp{display:none}
+#lp a{color:inherit;text-decoration:none}#lp .lpin{max-width:1120px;margin:0 auto;padding:0 20px}
+.lpnav{position:sticky;top:var(--bh,0px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
+.lpnav .lpin{display:flex;align-items:center;justify-content:space-between;height:64px}
+.lpbrand{display:flex;align-items:center;gap:10px;letter-spacing:.07em;font-weight:700}
+.lplinks{display:flex;align-items:center;gap:6px}
+.lplinks a{padding:8px 12px;border-radius:10px;font-weight:500;font-size:.92rem;color:var(--mute)}
+.lplinks a:hover{color:var(--ink);background:rgba(127,127,160,.1)}
+#lp .lpcta{display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-weight:600;padding:9px 18px;border-radius:11px;box-shadow:0 4px 14px rgba(79,70,229,.35)}
+#lp .lplinks a.lpcta{color:#fff;margin-left:4px}
+#lp .lpghost{display:inline-block;border:1px solid var(--line);background:var(--card);padding:9px 18px;border-radius:11px;font-weight:600}
+#lp .big{padding:14px 28px;font-size:1rem;border-radius:13px}
+#lpburger{display:none;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:10px;width:42px;height:40px;font-size:1.2rem;cursor:pointer}
+.hero{padding:84px 0 72px;text-align:center;background:radial-gradient(60% 50% at 50% 0%,rgba(124,58,237,.18),transparent 70%),radial-gradient(40% 40% at 90% 10%,rgba(79,70,229,.14),transparent 70%)}
+.eyebrow{display:inline-block;padding:6px 14px;border-radius:99px;background:rgba(79,70,229,.1);color:var(--acc);font-weight:600;font-size:.8rem;letter-spacing:.04em}
+#lp h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.05;letter-spacing:-.035em;margin:18px auto 16px;max-width:820px;font-weight:800}
+.grad{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lpead{font-size:1.15rem;color:var(--mute);max-width:660px;margin:0 auto 28px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.fine{color:var(--mute);font-size:.85rem;margin-top:16px}
+#lp section{padding:72px 0;scroll-margin-top:calc(var(--bh,0px) + 72px)}#lp section.alt{background:var(--card);border-block:1px solid var(--line)}
+#lp h2{font-size:clamp(1.6rem,3.6vw,2.4rem);letter-spacing:-.025em;margin:0 0 12px;font-weight:750;text-align:center}
+.lsub{color:var(--mute);text-align:center;max-width:640px;margin:0 auto 40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.lc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.lc h3{margin:12px 0 6px;font-size:1.05rem}.lc p{margin:0;color:var(--mute);font-size:.93rem}
+.ico{width:42px;height:42px;border-radius:12px;background:rgba(79,70,229,.12);display:grid;place-items:center;font-size:1.2rem}
+.num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;display:grid;place-items:center;font-weight:700}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+#lp .split h2,#lp .split .lsub{text-align:left;margin-left:0}
+.ticks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}.ticks li{padding-left:28px;position:relative;color:var(--mute)}.ticks li:before{content:"✓";position:absolute;left:0;color:var(--g);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.chips span{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:.85rem;font-weight:500}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);display:grid;gap:12px}
+.bub{max-width:90%;padding:12px 14px;border-radius:14px;font-size:.92rem;line-height:1.45}
+.bub.a{background:rgba(79,70,229,.1);border-bottom-left-radius:4px}.bub.p{background:rgba(127,127,160,.14);justify-self:end;border-bottom-right-radius:4px}
+.bub small{display:block;font-weight:700;color:var(--mute);margin-bottom:2px;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase}
+.frame{border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 24px 60px rgba(15,23,42,.18);overflow:hidden;max-width:900px;margin:0 auto}
+.fbar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line)}.fbar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.fbody{display:grid;grid-template-columns:150px 1fr}.fside{background:var(--side);padding:14px;color:var(--sideink);font-size:.78rem;display:grid;gap:6px;align-content:start}
+.fside b{color:#fff;letter-spacing:.06em;margin-bottom:6px}.fside span{padding:6px 8px;border-radius:8px}.fside .on{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}
+.fmain{padding:16px}.ftiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.ft{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.ft small{display:block;color:var(--mute);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;font-weight:600}.ft strong{font-size:1.4rem;letter-spacing:-.02em}
+.frow{display:flex;justify-content:space-between;gap:8px;padding:9px 2px;border-bottom:1px solid var(--line);font-size:.8rem}
+.lpctl{display:flex;gap:10px;margin:14px 0 6px;flex-wrap:wrap}.lpctl span{padding:8px 16px;border-radius:10px;color:#fff;font-weight:700;font-size:.85rem}
+.price{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:16px}.bigp{font-size:2.6rem;font-weight:800;letter-spacing:-.03em}
+#lp details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+#lp summary{cursor:pointer;font-weight:650;list-style:none;display:flex;justify-content:space-between;gap:10px}
+#lp summary::after{content:"+";color:var(--acc);font-weight:700}#lp details[open] summary::after{content:"−"}
+#lp details p{margin:10px 0 0;color:var(--mute)}.faq{max-width:760px;margin:0 auto}
+.band{padding:56px 0;text-align:center;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}#lp .band h2{color:#fff}#lp .band .lpcta{background:#fff;color:#4338ca;box-shadow:none}
+.foot2{background:var(--side);color:var(--sideink);padding:44px 0 32px;font-size:.9rem}
+.foot2 .lpin{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}.foot2 b{color:#fff;letter-spacing:.07em}.foot2 a{display:inline-block;margin:0 14px 6px 0}
+.foot2 .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.8rem;opacity:.85}
+@media(max-width:820px){#lpburger{display:block}.lplinks{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px 16px;box-shadow:var(--shadow)}.lplinks.open{display:flex}.lplinks a{font-size:1rem;padding:12px}#lp .lplinks a.lpcta{text-align:center;margin:6px 0 0}.split,.price,.foot2 .lpin{grid-template-columns:1fr;gap:28px}#lp section{padding:52px 0}.hero{padding:56px 0 48px}}
+@media(max-width:600px){.fbody{grid-template-columns:1fr}.fside{display:none}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div id="lp">
+<header class="lpnav"><div class="lpin">
+<a href="#" class="lpbrand" data-go="top"><span class="logo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></span>VOXFLOW AI</a>
+<div class="lplinks" id="lpm"><a href="#" data-go="top">Home</a><a href="#" data-go="features">Features</a><a href="#" data-go="how">How It Works</a><a href="#" data-go="pricing">Pricing</a><a href="#" data-go="faq">FAQ</a><a href="#" data-enter>Login</a><a href="#" data-enter class="lpcta">Get Started</a></div>
+<button id="lpburger" aria-label="Menu">☰</button></div></header>
+<section id="top" class="hero"><div class="lpin"><span class="eyebrow">Outbound calling for local-business outreach</span>
+<h1>AI-Powered <span class="grad">Business Outreach</span></h1>
+<p class="lpead">VoxFlow finds local U.S. businesses that need a better web presence, then Alex Carter, your AI voice agent, calls them for you. Every outcome is saved, and interested prospects are handed to you.</p>
+<div class="ctas"><a href="#" data-enter class="lpcta big">Get Started</a><a href="#" data-enter class="lpghost big">Login</a></div>
+<p class="fine">Free to use. Phone and AI voice provider costs are separate.</p></div></section>
+<section id="how" class="alt"><div class="lpin"><h2>How It Works</h2><p class="lsub">From finding a business to a saved outcome in five steps.</p><div class="cards"><div class="lc"><div class="num">1</div><h3>Find leads</h3><p>Search by industry and location and see who has no website or a weak one.</p></div><div class="lc"><div class="num">2</div><h3>Select a lead</h3><p>Review the profile, add notes and pick who to call.</p></div><div class="lc"><div class="num">3</div><h3>Tap CALL or press START</h3><p>VoxFlow sends the request to your phone provider.</p></div><div class="lc"><div class="num">4</div><h3>Alex talks</h3><p>Alex has the conversation and identifies herself as an AI if asked.</p></div><div class="lc"><div class="num">5</div><h3>Outcome saved</h3><p>Results, contacts and summaries save automatically. You close the sale.</p></div></div></div></section>
+<section id="features"><div class="lpin"><h2>Features</h2><p class="lsub">Everything you need to run outbound outreach from one place.</p><div class="cards"><div class="lc"><div class="ico">🔎</div><h3>Lead finder</h3><p>Search U.S. businesses by industry, state, city, ZIP code and keyword. No-website and weak-website businesses come first.</p></div><div class="lc"><div class="ico">🎙️</div><h3>Alex Carter, AI voice agent</h3><p>A natural, concise voice agent that speaks with the owner, asks one question at a time and never pushes.</p></div><div class="lc"><div class="ico">📞</div><h3>One-tap CALL</h3><p>Tap CALL on any lead and VoxFlow sends the request to your connected phone provider. You never dial by hand.</p></div><div class="lc"><div class="ico">▶️</div><h3>START and STOP</h3><p>Start calling eligible leads, or stop new calls instantly. You are always in control.</p></div><div class="lc"><div class="ico">🗂️</div><h3>Outcomes and follow-ups</h3><p>Every call gets one outcome. Agreed follow-ups are scheduled in the prospect's time zone.</p></div><div class="lc"><div class="ico">🚫</div><h3>Do Not Contact</h3><p>An opt-out blocks that number everywhere: single calls, campaigns and follow-ups.</p></div><div class="lc"><div class="ico">💬</div><h3>Instagram and WhatsApp handoff</h3><p>Interested prospects share how they want to be reached, and you follow up personally.</p></div><div class="lc"><div class="ico">👥</div><h3>Teams and admin</h3><p>Role-based access, per-user daily limits and private admin controls.</p></div></div></div></section>
+<section class="alt"><div class="lpin split"><div><h2>Meet Alex Carter</h2><p class="lsub">Your AI voice agent for web-design outreach.</p><ul class="ticks"><li>Friendly, confident and concise, never pushy</li><li>Asks one question at a time and listens</li><li>Says she is an AI whenever asked</li><li>Uses fixed package prices and never invents discounts</li><li>Never asks for passwords or payment details</li></ul></div>
+<div class="chat"><div class="bub a"><small>Alex</small>Hi, this is Alex Carter calling on behalf of a web-design service. Am I speaking with the owner or manager?</div><div class="bub p"><small>Prospect</small>Wait, are you an AI?</div><div class="bub a"><small>Alex</small>Yes, I'm an AI voice agent calling on behalf of a web-design service.</div><div class="fine" style="margin:0">Example conversation</div></div></div></section>
+<section><div class="lpin split"><div><h2>Find the right leads</h2><p class="lsub">Search real businesses and put the ones who need you first.</p><ul class="ticks"><li>Search by industry, state, city, ZIP code and keyword</li><li>Flags no website, weak web presence or an outdated link</li><li>Blocks duplicates and keeps notes on every lead</li></ul><div class="chips"><span>Landscaping</span><span>Contractors</span><span>Cleaning</span><span>Salons</span><span>Barbers</span><span>Auto detailing</span><span>Restaurants</span></div></div>
+<div class="lc"><h3>Lead data</h3><p>Lead search uses free OpenStreetMap business data, which can be incomplete. Check each lead before you reach out.</p></div></div></section>
+<section class="alt"><div class="lpin split"><div><h2>Call automation you control</h2><p class="lsub">Real call status, one outcome per call and instant opt-outs.</p><ul class="ticks"><li>Live status: Dialing, Ringing, Connected, Call Ended</li><li>Calls only in local business hours</li><li>Outcomes: Interested, Maybe, Not Interested, Missed, Callback, Do Not Contact</li></ul></div>
+<div class="lc"><h3>Always in control</h3><div class="lpctl"><span style="background:#16a34a">▶️ START</span><span style="background:#dc2626">⏹️ STOP</span></div><p>Nothing calls until you press START. STOP prevents new calls right away.</p></div></div></section>
+<section><div class="lpin"><h2>Your dashboard</h2><p class="lsub">Leads, calls, outcomes and revenue in one private workspace.</p>
+<div class="frame"><div class="fbar"><i></i><i></i><i></i></div><div class="fbody"><div class="fside"><b>VOXFLOW AI</b><span class="on">Dashboard</span><span>Find Leads</span><span>Leads</span><span>Interested</span><span>Calls</span><span>Campaigns</span></div>
+<div class="fmain"><div class="ftiles"><div class="ft"><small>Total leads</small><strong>12</strong></div><div class="ft"><small>Total calls</small><strong>10</strong></div><div class="ft"><small>Interested</small><strong>3</strong></div><div class="ft"><small>Revenue</small><strong>$1,000</strong></div></div>
+<div class="lpctl"><span style="background:#16a34a">▶️ START</span><span style="background:#dc2626">⏹️ STOP</span></div>
+<div class="frow"><span>Sample Green Lawn Care</span><span>🟢 Interested</span></div><div class="frow"><span>Sample Summit Roofing</span><span>🟡 Maybe</span></div><div class="frow"><span>Sample Casa Verde Grill</span><span>🚫 Do Not Contact</span></div></div></div></div>
+<p class="fine" style="text-align:center">Illustration with sample data.</p></div></section>
+<section id="pricing" class="alt"><div class="lpin"><h2>Pricing</h2><p class="lsub">VoxFlow is free. Provider costs are separate.</p>
+<div class="price"><div class="lc"><h3>VoxFlow AI</h3><div class="bigp">Free forever</div><ul class="ticks"><li>500 calls per day for the owner and each user</li><li>Dashboard, lead finder, campaigns and admin included</li></ul><p style="margin-top:16px"><a href="#" data-enter class="lpcta">Get Started</a></p></div>
+<div class="lc"><h3>Not included</h3><p>Costs from your phone and AI voice provider, phone numbers and any paid lead-data services are billed by those providers and are not free.</p></div></div></div></section>
+<section id="faq"><div class="lpin"><h2>FAQ</h2><p class="lsub">Straight answers about how VoxFlow works.</p><div class="faq"><details><summary>Is Alex a human?</summary><p>No. Alex is an AI voice agent. If a prospect asks, she says so plainly.</p></details><details><summary>Does VoxFlow call people who opted out?</summary><p>No. A Do Not Contact request blocks that number for single calls, campaigns and scheduled follow-ups.</p></details><details><summary>When does it make calls?</summary><p>Only between 9am and 5pm, Monday to Friday, in the prospect's local time zone.</p></details><details><summary>Is VoxFlow really free?</summary><p>VoxFlow itself is free. Your phone and AI voice provider, phone numbers and any lead data services have their own costs.</p></details><details><summary>What do I need to connect?</summary><p>A telephony and AI voice provider account. You add its key and phone number ID on the Phone page. Keys stay on the server.</p></details><details><summary>Is it legal to use?</summary><p>VoxFlow includes opt-out and calling-hour controls, but you are responsible for following telemarketing and AI-voice rules, including consent requirements where they apply.</p></details></div></div></section>
+<div class="band"><div class="lpin"><h2>Ready to start?</h2><p style="opacity:.9;margin:0 0 20px">Open your dashboard and find your first leads.</p><a href="#" data-enter class="lpcta big">Get Started</a></div></div>
+<footer class="foot2"><div class="lpin"><div><b>VOXFLOW AI</b><div>AI-Powered Business Outreach</div></div><div><a href="#" data-go="features">Features</a><a href="#" data-go="how">How It Works</a><a href="#" data-go="pricing">Pricing</a><a href="#" data-go="faq">FAQ</a><a href="#" data-enter>Login</a></div>
+<div class="legal">Alex Carter is an AI voice agent. You are responsible for complying with telemarketing, consent and AI-voice rules that apply to your calls.</div></div></footer>
+</div>
+<div id="app"><nav id="nav"></nav><main id="main"></main></div>
+<dialog id="dlg"></dialog>
+<script>
+const P={Basic:1000,Professional:1500,Premium:2000};
+const OUT={INTERESTED:'🟢 Interested',MAYBE:'🟡 Maybe / follow-up',NOT_INTERESTED:'🔴 Not interested',MISSED:'📵 Missed call',CALLBACK:'📞 Callback',DNC:'🚫 Do not contact'};
+const TABS=['Dashboard','Find Leads','Leads','Interested','Profiles','Instagram','WhatsApp','Calls','Campaigns','Follow-ups','Packages','Alex','Phone','Admin','Settings'];
+let S={},svT=null;
+const save=()=>{clearTimeout(svT);svT=setTimeout(()=>{api('/api/leads',{leads:S.leads}).then(()=>api('/api/campaigns',{campaigns:S.campaigns})).catch(()=>{})},300)};
+let tab='Dashboard',q='',fs='';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dg=p=>String(p||'').replace(/\D/g,'').slice(-10);
+const day=d=>new Date(d).toLocaleDateString('en-CA');
+const money=n=>'$'+n.toLocaleString();
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const lead=id=>S.leads.find(l=>l.id===id);
+const isDNC=l=>l.status==='DNC'||(dg(l.phone)&&S.dnc.includes(dg(l.phone)));
+const stat=(a,b,c='')=>`<div class="stat"><small>${a}</small><strong class="${c}">${b}</strong></div>`;
+const cnt=o=>S.calls.filter(c=>c.outcome===o).length;
+const sales=()=>S.leads.filter(l=>l.sale);
+const tbl=(h,rows)=>rows.length?`<div class="wrap"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`:'<p class="empty">Nothing here yet.</p>';
+const fdt=c=>new Date(c.ts).toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
+
+function nav(){$('#nav').innerHTML='<b>VOXFLOW AI</b><small style="display:block;color:var(--mute);font-weight:400;font-size:.7rem">AI-Powered Business Outreach</small>'+TABS.map(t=>`<button class="${t===tab?'on':''}" data-act="tab" data-v="${t}">${t}</button>`).join('')}
+
+function dash(){
+  const t=S.calls.filter(c=>day(c.ts)===day(new Date())),tc=o=>t.filter(c=>c.outcome===o).length;
+  const conn=S.calls.filter(c=>c.outcome!=='MISSED').length,tconn=t.filter(c=>c.outcome!=='MISSED').length;
+  const rev=sales().reduce((a,l)=>a+l.sale.price,0),ps=p=>sales().filter(l=>l.sale.package===p).length;
+  return `<h2>Dashboard</h2><div class="grid">${stat('Total leads',S.leads.length)+stat('Total calls',S.calls.length)+stat('Connected',conn)+stat('🟢 Interested',cnt('INTERESTED'),'g')+stat('🟡 Maybe',cnt('MAYBE'),'y')+stat('🔴 Not interested',cnt('NOT_INTERESTED'),'r')+stat('📵 Missed',cnt('MISSED'))+stat('📞 Callbacks',cnt('CALLBACK'))+stat('🚫 Do not contact',cnt('DNC'))+stat('Confirmed sales',sales().length)+stat('Revenue',money(rev),'g')+stat('Calls remaining today',Math.max(0,S.limit-(S.used||0)))}</div>
+  <h2>Package sales</h2><div class="grid">${stat('Basic',ps('Basic'))+stat('Professional',ps('Professional'))+stat('Premium',ps('Premium'))}</div>
+  <h2>Today</h2><div class="grid">${stat('Calls',t.length)+stat('Interested',tc('INTERESTED'))+stat('Maybe',tc('MAYBE'))+stat('Not interested',tc('NOT_INTERESTED'))+stat('Missed',tc('MISSED'))+stat('Callbacks',tc('CALLBACK'))+stat('DNC',tc('DNC'))+stat('Interest rate',tconn?Math.round(tc('INTERESTED')/tconn*100)+'%':'0%')}</div>`;
+}
+
+function leadCard(l){
+  const d=isDNC(l);
+  return `<div class="card"><div class="top"><div><h3>${esc(l.name)}</h3><div class="meta">${esc(l.category)}${l.location?' · '+esc(l.location):''}</div><div class="meta">${esc(l.phone||'No phone')}${l.website?' · '+esc(l.website):''}${l.instagram?' · @'+esc(l.instagram):''}${l.state?' · '+esc(l.state):' · <span class="r">no state set</span>'}${({none:' · No website',weak:' · Weak web presence'})[l.wstat]||''}</div></div><span class="badge">${OUT[l.status]||'New'}</span></div>${l.notes?`<div class="meta" style="margin-top:6px">Notes: ${esc(l.notes)}</div>`:''}
+  <div class="acts"><button class="call" data-act="call" data-id="${l.id}" ${d||!l.phone?'disabled':''}>CALL</button><button data-act="view" data-id="${l.id}">View</button><button data-act="log" data-id="${l.id}">Log result</button><button data-act="note" data-id="${l.id}">Notes</button><button data-act="del" data-id="${l.id}">Remove</button></div></div>`;
+}
+function leads(){
+  const v=S.leads.filter(l=>(!q||(l.name+l.category+l.location+l.phone).toLowerCase().includes(q))&&(!fs||(l.status||'NEW')===fs)).sort(SORTL);
+  return `<h2>Leads</h2><div class="warn">Use Find Leads to search real businesses, or add and import leads by hand. Nothing here is generated.</div>
+  <div class="bar"><input id="q" placeholder="Search leads" value="${esc(q)}"><select id="fs"><option value="">All statuses</option><option value="NEW">New</option>${Object.entries(OUT).map(([k,x])=>`<option value="${k}" ${fs===k?'selected':''}>${x}</option>`).join('')}</select></div>
+  <div class="acts" style="margin:0 0 12px"><button class="p" data-act="add">Add lead</button><button data-act="imp">Import CSV</button></div><input type="file" id="file" accept=".csv" hidden>
+  ${v.length?v.map(leadCard).join(''):'<p class="empty">No leads yet. Add one or import a CSV.</p>'}`;
+}
+const lastCall=(id,o)=>[...S.calls].reverse().find(c=>c.leadId===id&&(!o||c.outcome===o));
+function interested(){
+  const L=S.leads.filter(l=>l.status==='INTERESTED'||l.sale);
+  return `<h2>Interested</h2>`+(L.length?L.map(l=>{const c=lastCall(l.id,'INTERESTED')||{};return `<div class="card"><div class="top"><div><h3>${esc(l.name)}</h3><div class="meta">${esc(c.contact||'')} ${esc(l.phone)}</div><div class="meta">${c.ig?'@'+esc(c.ig)+' · ':''}${c.wa?'WhatsApp '+esc(c.wa)+' · ':''}${esc(c.package||'No package')} ${c.price?money(c.price):''}</div></div><span class="badge">${l.sale?'✅ Sold '+money(l.sale.price):'🟢 Interested'}</span></div><p class="meta">${esc(c.summary||'')}${c.next?'<br>Next: '+esc(c.next):''}</p><div class="acts">${!l.sale&&c.package?`<button class="p" data-act="sale" data-id="${l.id}">Confirm sale</button>`:''}<button data-act="hist" data-id="${l.id}">History</button><button data-act="note" data-id="${l.id}">Notes</button></div></div>`}).join(''):'<p class="empty">No interested leads yet.</p>');
+}
+function igLink(l){
+  const url=(l.igUrl||'').trim();
+  if(url)return{url,exact:true};
+  if(l.instagram)return{url:'https://instagram.com/'+encodeURIComponent(l.instagram),exact:false};
+  return null;
+}
+function initials(n){return esc((n||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase())}
+function profileCard(l){
+  const ig=igLink(l),verified=!!l.igVerified;
+  return `<div class="card"><div class="top">
+  <div style="display:flex;gap:12px;align-items:flex-start">
+  ${l.logo?`<img src="${esc(l.logo)}" alt="" style="width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;border:1px solid var(--line)" onerror="this.outerHTML='<div class=\\'logo\\' style=\\'width:52px;height:52px;flex:none;font-size:1rem\\'>${initials(l.name)}</div>'">`:`<div class="logo" style="width:52px;height:52px;flex:none;font-size:1rem">${initials(l.name)}</div>`}
+  <div><h3>${esc(l.name)}</h3><div class="meta">${esc(l.category||'')}${l.location?' · '+esc(l.location):''}</div>
+  <div class="meta">${l.phone?esc(l.phone):'No phone on file'}${l.website?' · '+esc(l.website):''}</div></div></div>
+  <span class="badge ${verified?'g':'y'}">${verified?'Verified':'Needs Verification'}</span></div>
+  <div class="meta" style="margin-top:8px">Instagram: ${l.instagram?'@'+esc(l.instagram):'Not provided'}${ig&&!ig.exact?' <span class="y">(link guessed from username, not confirmed)</span>':''}</div>
+  <div class="acts"><button class="p" data-act="igopen" data-id="${l.id}" ${ig?'':'disabled'}>Open Instagram Profile</button><button data-act="profile" data-id="${l.id}">Edit profile</button></div></div>`;
+}
+function profiles(){
+  const L=S.leads.filter(l=>l.status==='INTERESTED'||l.sale);
+  return `<h2>Profiles</h2><p class="meta" style="margin-top:-6px">Business profiles for interested leads. Nothing here is guessed except a plain Instagram link built from the saved username, which is marked unconfirmed until you verify it.</p>`+
+  (L.length?L.map(profileCard).join(''):'<p class="empty">No interested leads yet.</p>');
+}
+function contacts(key,title,hdr){
+  const seen=new Set(),rows=[];
+  [...S.calls].reverse().forEach(c=>{if(c[key]&&!seen.has(c.leadId+c[key])){seen.add(c.leadId+c[key]);rows.push([esc(hdr==='@'?'@'+c[key]:c[key]),esc(c.name),esc(c.phone),esc(c.package||''),c.price?money(c.price):'',day(c.ts),esc(lead(c.leadId)?.notes||'')])}});
+  return `<h2>${title}</h2>`+tbl([hdr==='@'?'Username':'WhatsApp','Business','Phone','Package','Price','Date','Notes'],rows);
+}
+function calls(){
+  const v=[...S.calls].reverse().filter(c=>(!q||(c.name+c.phone+c.summary).toLowerCase().includes(q))&&(!fs||c.outcome===fs));
+  return `<h2>Calls</h2><div class="bar"><input id="q" placeholder="Search calls" value="${esc(q)}"><select id="fs"><option value="">All outcomes</option>${Object.entries(OUT).map(([k,x])=>`<option value="${k}" ${fs===k?'selected':''}>${x}</option>`).join('')}</select></div>`+tbl(['Business','Phone','Date/time','Duration','Outcome','Package','Price','Summary'],v.map(c=>[esc(c.name),esc(c.phone),fdt(c),c.dur?c.dur+' min':'-',OUT[c.outcome],esc(c.package||''),c.price?money(c.price):'',esc(c.summary||'')]));
+}
+function follow(){
+  const v=S.calls.filter(c=>c.fuDate&&['MAYBE','CALLBACK'].includes(lead(c.leadId)?.status)&&lastCall(c.leadId)===c).sort((a,b)=>(a.fuDate+a.fuTime).localeCompare(b.fuDate+b.fuTime));
+  return `<h2>Follow-ups</h2>`+tbl(['Business','Phone','Follow-up','Package','Reason / notes',''],v.map(c=>[esc(c.name),esc(c.phone),`<span class="${c.fuDate<day(new Date())?'r':''}">${esc(c.fuDate)} ${esc(c.fuTime||'')}</span>`,esc(c.package||''),esc(c.summary||''),`<button data-act="call" data-id="${c.leadId}" class="b">CALL</button>`]));
+}
+function packages(){
+  const D={Basic:['Professional business website','Mobile-responsive design','Modern layout','Business information','Contact section','Call button','Basic SEO setup','Social media links'],Professional:['Everything in Basic','More customized design','Additional pages','Advanced contact/lead form','Stronger SEO setup','Social media integration','More customization'],Premium:['Everything in Professional','Fully customized website','Advanced sections/features','Premium design','Advanced lead/contact features','Maximum customization','Priority website setup']};
+  return `<h2>Packages</h2><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">${Object.keys(P).map(k=>`<div class="card"><h3>${k} — ${money(P[k])}</h3><ul class="meta">${D[k].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div><p class="meta">Prices are fixed. Custom or discounted requests go to the owner as a note.</p>`;
+}
+const V={Dashboard:dash,Leads:leads,Interested:interested,Profiles:profiles,Instagram:()=>contacts('ig','Instagram','@'),WhatsApp:()=>contacts('wa','WhatsApp','#'),Calls:calls,'Follow-ups':follow,Packages:packages,'Phone & Alex':phone};
+
+function modal(h){const d=$('#dlg');d.innerHTML=h;d.showModal()}
+const close=()=>$('#dlg').close();
+const fld=(id,l,t='text',v='')=>`<label>${l}</label><input id="${id}" type="${t}" value="${esc(v)}">`;
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const a=b.dataset.act,id=b.dataset.id,l=lead(id);
+  if(a==='tab'){tab=b.dataset.v;q='';fs='';render();}
+  if(a==='close')close();
+  if(a==='call')return callLead(id);
+  if(a==='add')modal(`<h3>Add lead</h3><form id="addf">${fld('n','Business name*')+fld('c','Category')+fld('lo','City, state')+fld('ph','Phone','tel')+fld('w','Website')+fld('ig','Instagram username')+fld('st','State, 2 letters (sets calling hours)')}<div class="acts"><button class="p">Save lead</button><button type="button" data-act="close">Cancel</button></div></form>`);
+  if(a==='imp')$('#file').click();
+  if(a==='note')modal(`<h3>Notes — ${esc(l.name)}</h3><form id="notef" data-id="${id}"><textarea id="nt" rows="5">${esc(l.notes||'')}</textarea><div class="acts"><button class="p">Save</button><button type="button" data-act="close">Cancel</button></div></form>`);
+  if(a==='del')modal(`<h3>Remove ${esc(l.name)}?</h3><p class="meta">Its call history stays in Calls.</p><div class="acts"><button class="p" data-act="delok" data-id="${id}">Remove</button><button data-act="close">Cancel</button></div>`);
+  if(a==='delok'){S.leads=S.leads.filter(x=>x.id!==id);save();close();render();}
+  if(a==='log')modal(`<h3>Log call — ${esc(l.name)}</h3><form id="logf" data-id="${id}"><label>Outcome*</label><select id="o">${Object.entries(OUT).map(([k,x])=>`<option value="${k}">${x}</option>`).join('')}</select><label>Package discussed</label><select id="pk"><option value="">None</option>${Object.keys(P).map(k=>`<option>${k}</option>`).join('')}</select>${fld('du','Duration (minutes)','number')+fld('ct','Contact name')+fld('ig','Instagram username')+fld('wa','WhatsApp number','tel')}<label>Follow-up date and time</label><div class="bar"><input id="fd" type="date"><input id="ft" type="time"></div><label>Summary</label><textarea id="su" rows="3"></textarea>${fld('nx','Next step')}<div class="warn" id="err" hidden></div><div class="acts"><button class="p">Save result</button><button type="button" data-act="close">Cancel</button></div></form>`);
+  if(a==='sale'){const c=lastCall(id,'INTERESTED');l.sale={package:c.package,price:c.price,ts:new Date().toISOString()};save();render();}
+  if(a==='hist'){const h=S.calls.filter(c=>c.leadId===id).reverse();modal(`<h3>${esc(l.name)}</h3>${h.map(c=>`<div class="card"><b>${OUT[c.outcome]}</b> <span class="meta">${fdt(c)}</span><div class="meta">${esc(c.summary||'')}</div></div>`).join('')||'<p class="empty">No calls logged.</p>'}<div class="acts"><button data-act="close">Close</button></div>`);}
+  if(a==='alex'){S.alex=$('#alex').value;save();b.textContent='Saved';}
+  if(a==='exp'){const x=document.createElement('a');x.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:'application/json'}));x.download='voxflow-backup.json';x.click();}
+  if(a==='igopen'){const ig=igLink(l);if(ig)window.open(ig.url,'_blank','noopener')}
+  if(a==='profile')modal(`<h3>Edit profile — ${esc(l.name)}</h3><form id="pff" data-id="${id}">
+    <label>Logo or profile picture URL</label><input id="pf_logo" value="${esc(l.logo||'')}" placeholder="https://...">
+    <label>Website</label><input id="pf_web" value="${esc(l.website||'')}">
+    <label>Phone</label><input id="pf_ph" value="${esc(l.phone||'')}" type="tel">
+    <label>Location</label><input id="pf_loc" value="${esc(l.location||'')}">
+    <label>Instagram username</label><input id="pf_ig" value="${esc(l.instagram||'')}" placeholder="without @">
+    <label>Exact Instagram profile URL</label><input id="pf_igurl" value="${esc(l.igUrl||'')}" placeholder="https://instagram.com/exact_account">
+    <label style="display:flex;align-items:center;gap:8px;font-weight:400"><input type="checkbox" id="pf_ver" style="width:auto;margin:0" ${l.igVerified?'checked':''}> I have personally checked this is the correct account</label>
+    <div class="meta">Nothing is auto-verified. Only check the box once you've opened the link yourself and confirmed it's the right business.</div>
+    <div class="acts"><button class="p">Save</button><button type="button" data-act="close">Cancel</button></div></form>`);
+});
+document.addEventListener('input',e=>{if(e.target.id==='q'){q=e.target.value.toLowerCase();const p=e.target.selectionStart;render();const n=$('#q');n.focus();n.setSelectionRange(p,p);}});
+document.addEventListener('change',e=>{
+  if(e.target.id==='fs'){fs=e.target.value;render();}
+  if(e.target.id==='file'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{importCSV(r.result);e.target.value='';};r.readAsText(f);}
+});
+function parseCSV(t){const rows=[];let r=[],c='',qt=false;for(let i=0;i<t.length;i++){const ch=t[i];if(qt){if(ch==='"'&&t[i+1]==='"'){c+='"';i++}else if(ch==='"')qt=false;else c+=ch}else if(ch==='"')qt=true;else if(ch===','){r.push(c);c=''}else if(ch==='\n'){r.push(c);rows.push(r);r=[];c=''}else if(ch!=='\r')c+=ch}if(c||r.length){r.push(c);rows.push(r)}return rows}
+function addLead(o){
+  const p=dg(o.phone);
+  if(S.leads.some(l=>(p&&dg(l.phone)===p)||(!p&&l.name.toLowerCase()===o.name.toLowerCase()&&l.location===o.location)))return false;
+  S.leads.push({id:uid(),name:o.name,category:o.category||'',location:o.location||'',phone:o.phone||'',website:o.website||'',instagram:o.instagram||'',notes:'',state:o.state||'',wstat:o.wstat||'',status:isDNCNum(p)?'DNC':''});return true;
+}
+const isDNCNum=p=>p&&S.dnc.includes(p);
+function importCSV(t){
+  const R=parseCSV(t),H=(R.shift()||[]).map(x=>x.trim().toLowerCase());const ix=k=>H.indexOf(k);
+  let n=0,d=0;R.forEach(r=>{const name=(r[ix('name')]||'').trim();if(!name)return;
+    addLead({name,category:r[ix('industry')]||r[ix('category')],location:r[ix('address')]||r[ix('location')],phone:r[ix('phone')],website:r[ix('listed site')]||r[ix('website')],state:(r[ix('state')]||'').trim().toUpperCase()})?n++:d++});
+  save();render();modal(`<h3>Import finished</h3><p class="meta">${n} added, ${d} skipped as duplicates.</p><div class="acts"><button data-act="close">Close</button></div>`);
+}
+document.addEventListener('submit',e=>{
+  e.preventDefault();const f=e.target,v=id=>(f.querySelector('#'+id)?.value||'').trim();
+  if(f.id==='addf'){if(!v('n'))return;const ok=addLead({name:v('n'),category:v('c'),location:v('lo'),phone:v('ph'),website:v('w'),instagram:v('ig').replace('@',''),state:v('st').toUpperCase().slice(0,2)});save();close();tab='Leads';render();if(!ok)modal('<h3>Duplicate</h3><p class="meta">A lead with that phone or name already exists.</p><div class="acts"><button data-act="close">Close</button></div>');}
+  if(f.id==='notef'){lead(f.dataset.id).notes=v('nt');save();close();render();}
+  if(f.id==='pff'){
+    const l=lead(f.dataset.id);
+    Object.assign(l,{logo:v('pf_logo'),website:v('pf_web'),phone:v('pf_ph'),location:v('pf_loc'),instagram:v('pf_ig').replace('@',''),igUrl:v('pf_igurl'),igVerified:f.querySelector('#pf_ver').checked});
+    save();close();render();
+  }
+  if(f.id==='logf'){
+    const l=lead(f.dataset.id),o=v('o'),pk=v('pk'),er=f.querySelector('#err');
+    if(o==='INTERESTED'&&!pk){er.textContent='Choose the package the prospect wants.';er.hidden=false;return;}
+    if((o==='MAYBE'||o==='CALLBACK')&&!v('fd')){er.textContent='Add a follow-up date.';er.hidden=false;return;}
+    const call={id:uid(),leadId:l.id,name:l.name,phone:l.phone,ts:new Date().toISOString(),dur:+v('du')||0,outcome:o,package:pk,price:pk?P[pk]:0,contact:v('ct'),ig:v('ig').replace('@',''),wa:v('wa'),summary:v('su'),next:v('nx'),fuDate:v('fd'),fuTime:v('ft'),tz:Intl.DateTimeFormat().resolvedOptions().timeZone};
+    S.calls.push(call);l.status=o;api('/api/calls',{call}).catch(()=>{});
+    if(call.ig&&!l.instagram)l.instagram=call.ig;
+    if(o==='DNC'&&dg(l.phone)&&!S.dnc.includes(dg(l.phone)))S.dnc.push(dg(l.phone));
+    save();close();render();
+  }
+});
+Object.assign(S,{leads:[],calls:[],dnc:[],live:{},campaigns:[],run:{},cfg:{},limit:0,used:0,alex:''});
+let trk=null,FL=[],CS='',lastH='',ST_T=null;
+const LBL={scheduled:'Dialing',queued:'Dialing',ringing:'Ringing','in-progress':'Connected. Alex is talking',forwarding:'Connected',ended:'Call ended'};
+const shut='<div class="acts"><button data-act="close">Close</button></div>';
+const own=()=>S.me&&S.me.role==='owner';
+const flush=()=>api('/api/leads',{leads:S.leads}).then(()=>api('/api/campaigns',{campaigns:S.campaigns}));
+async function api(p,b){
+  const r=await fetch(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b||{})});
+  const j=await r.json().catch(()=>({}));
+  if(r.status===401&&p!=='/api/login'){showLogin();throw new Error('auth')}
+  return j;
+}
+async function showLogin(){
+  if($('#login'))return;
+  const r=await (await fetch('/api/me',{method:'POST',headers:{'content-type':'application/json'},body:'{}'})).json();
+  const d=document.createElement('div');d.id='login';d.style.cssText='position:fixed;inset:0;background:var(--bg);z-index:50;display:grid;place-items:center;padding:16px';
+  d.innerHTML=`<form id="authf" class="card" style="width:min(380px,100%)" data-setup="${r.setup?1:0}"><div class="logo" style="margin-bottom:12px">${LOGO}</div><h2 style="margin-top:0">VOXFLOW AI</h2><p class="meta">AI-Powered Business Outreach<br>${r.setup?'Create the owner account. Only the owner can add other users.':'Sign in'}</p><label>Email</label><input id="ae" type="email" required><label>Password</label><input id="ap" type="password" minlength="8" required><div class="warn" id="aw" hidden></div><div class="acts"><button class="p">${r.setup?'Create owner account':'Sign in'}</button></div></form>`;
+  document.body.appendChild(d);
+}
+async function load(){
+  const j=await api('/api/state'),first=!S.loaded;
+  Object.assign(S,{me:j.me,calls:j.calls,dnc:j.dnc,live:j.live,run:j.run,cfg:j.cfg,limit:j.limit,used:j.used,alex:j.cfg.greeting});
+  S.pk=j.pk;Object.keys(j.pk).forEach(k=>P[k]=j.pk[k].price);
+  if(first){S.leads=j.leads;S.campaigns=j.campaigns;S.loaded=true}
+  S.leads.forEach(l=>{const c=[...S.calls].reverse().find(x=>x.leadId===l.id);l.status=c?c.outcome:''});
+  const ct=$('#ctl');if(ct&&!ct.contains(document.activeElement))ct.innerHTML=ctl();
+  if(trk&&$('#cs')){const lv=S.live[trk];if(lv)$('#cs').innerHTML='<b>'+(LBL[lv.status]||esc(lv.status))+'</b>';else{const c=S.calls.find(x=>x.id===trk);if(c){$('#cs').innerHTML='<b>Call ended</b>. Result: '+OUT[c.outcome];trk=null}}}
+  const h=JSON.stringify([j.calls,j.live,j.dnc,j.cfg,j.used]);
+  const busy=/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)||$('#dlg').open||['Find Leads','Campaigns','Packages','Alex','Phone','Admin','Settings'].includes(tab);
+  if(first||(h!==lastH&&!busy)){render();lastH=h}
+}
+function render(){nav();$('#main').innerHTML='<div id="ctl">'+ctl()+'</div>'+V[tab]();if(tab==='Admin')loadAdmin()}
+function ctl(){
+  const r=S.run||{},lv=Object.values(S.live||{})[0],sel=r.on?r.campaign:CS;
+  return `<div class="card"><div class="bar"><select id="camp"><option value="">All eligible leads</option>${S.campaigns.map(c=>`<option value="${c.id}" ${sel===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select><button class="p" data-act="start" ${r.on?'disabled':''}>▶️ START</button><button class="b" data-act="stop">⏹️ STOP</button></div><div class="meta"><span class="pill ${r.on?'on':'off'}">${r.on?'RUNNING':'STOPPED'}</span> In progress: ${Object.keys(S.live||{}).length}. Connected: ${Object.values(S.live||{}).filter(x=>x.status==='in-progress').length}. Calls remaining: ${Math.max(0,S.limit-S.used)}. ${esc(r.msg||'')}${lv?' Live: '+esc(lv.name)+', '+(LBL[lv.status]||esc(lv.status)):''}<br>STOP prevents new calls. A call already in progress finishes.</div></div>`;
+}
+async function callLead(id){
+  const l=lead(id);
+  if(isDNC(l))return modal(`<h3>Blocked</h3><p class="meta">${esc(l.name)} is on the do-not-contact list.</p>${shut}`);
+  modal(`<h3>${esc(l.name)}</h3><p id="cs"><b>Sending call request…</b></p>`);
+  await flush().catch(()=>{});
+  const j=await api('/api/call',{leadId:id}).catch(()=>({error:'Could not reach the VoxFlow server.'}));
+  if(!j.ok)return modal(`<h3>Call not placed</h3><div class="warn">${esc(j.error||'Request failed')}</div>${shut}`);
+  trk=j.callId;modal(`<h3>${esc(l.name)}</h3><p id="cs"><b>Dialing</b></p><p class="meta">Status comes from the provider. The result saves itself when the call ends.</p>${shut}`);load();
+}
+const IND={Landscaping:['["craft"="gardener"]','landscap|lawn|tree service'],Contractors:['["craft"~"^(builder|carpenter|plumber|electrician|hvac|roofer|painter|handyman)$"]','contract|construction|remodel|roofing|plumbing|hvac'],Cleaning:['["shop"~"^(dry_cleaning|laundry)$"]','clean|maid|janitorial|pressure wash'],Salons:['["shop"~"^(beauty|hairdresser)$"]','salon|nails'],Barbers:['','barber'],'Auto detailing':['["amenity"="car_wash"]','detail|car wash'],Restaurants:['["amenity"~"^(restaurant|fast_food|cafe)$"]','']};
+const WEAKRE=/(facebook|instagram|yelp|linktr\.ee|tiktok|twitter|x\.com|google\.com|business\.site|sites\.google|wixsite|weebly|godaddysites|square\.site|carrd\.co|yellowpages|nextdoor|thumbtack|angi)/i;
+const flcards=()=>FL.map((x,i)=>`<div class="card top"><div><h3>${esc(x.name)}</h3><div class="meta">${esc(x.industry)} · ${esc(x.address)} · ${esc(x.phone||'No phone')}</div></div><div><span class="badge">${x.status==='none'?'No website':x.status==='weak'?'Weak presence':'Has website'}</span><div class="acts"><button data-act="fadd" data-i="${i}">Add</button></div></div></div>`).join('');
+function find(){
+  return `<h2>Find leads</h2><div class="card"><label>City and state, or ZIP code</label><input id="fl" placeholder="Tampa, FL or 33602"><label>Radius</label><select id="fr"><option value="5">5 miles</option><option value="10" selected>10 miles</option><option value="25">25 miles</option></select><label>Industries</label><div class="acts" style="margin-top:2px">${Object.keys(IND).map((k,i)=>`<label style="font-weight:400"><input type="checkbox" class="fi" value="${k}" ${i<3?'checked':''} style="width:auto;margin:0 4px 0 0">${k}</label>`).join('')}</div><label style="margin-top:10px">Extra keyword in business name</label><input id="fk"><div class="acts"><button class="p" data-act="fsearch">Search</button></div><div class="meta" id="flm">Uses free OpenStreetMap data. Businesses with no website or a weak web presence come first.</div></div><div id="flr">${flcards()}</div>`;
+}
+async function fsearch(){
+  const q=$('#fl').value.trim(),m=$('#flm');if(!q){m.textContent='Enter a location.';return}
+  const picks=[...document.querySelectorAll('.fi:checked')].map(x=>x.value),kw=$('#fk').value.trim().replace(/["\\|]/g,''),rad=$('#fr').value;
+  FL=[];
+  try{
+    m.textContent='Locating…';
+    const g=await (await fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&countrycodes=us&'+(/^\d{5}$/.test(q)?'postalcode='+q:'q='+encodeURIComponent(q)))).json();
+    if(!g.length)throw new Error('Location not found.');FLST=((g[0].address||{})['ISO3166-2-lvl4']||'').slice(3);
+    const ar=`(around:${Math.round(rad*1609)},${g[0].lat},${g[0].lon})`,seen=new Set();
+    for(const k of picks.concat(kw?['Keyword']:[])){
+      m.textContent='Searching '+k+'…';
+      const [tg,nm]=k==='Keyword'?['',kw]:IND[k];
+      const parts=(tg?`nwr${tg}${ar};`:'')+(nm?`nwr["name"~"${nm}",i]${ar};`:'');
+      const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(`[out:json][timeout:60];(${parts});out center tags 300;`)});
+      if(!r.ok)throw new Error('The search service is busy. Try again in a minute.');
+      (await r.json()).elements.forEach(e=>{const t=e.tags||{};if(!t.name||seen.has(e.id))return;seen.add(e.id);const site=t.website||t['contact:website']||t.url||'';FL.push({name:t.name,industry:k,phone:t.phone||t['contact:phone']||'',address:[[t['addr:housenumber'],t['addr:street']].filter(Boolean).join(' '),t['addr:city']].filter(Boolean).join(', '),website:site,state:FLST,status:!site?'none':(WEAKRE.test(site)||site.startsWith('http://'))?'weak':'has'})});
+      await new Promise(r=>setTimeout(r,1200));
+    }
+    const o={none:0,weak:1,has:2};FL.sort((a,b)=>o[a.status]-o[b.status]);
+    m.textContent=FL.length+' found. OpenStreetMap data can be incomplete, so check each lead on Google.';
+  }catch(err){m.textContent=err.message}
+  $('#flr').innerHTML=flcards();
+}
+function campaigns(){
+  const L=S.leads.filter(l=>l.phone);
+  return `<h2>Campaigns</h2><form id="cmpf" class="card"><label>Campaign name</label><input id="cn" required><label>Leads</label>${L.length?`<div style="max-height:220px;overflow:auto">${L.map(l=>`<label style="display:block;font-weight:400"><input type="checkbox" class="cl" value="${l.id}" style="width:auto;margin:0 6px 0 0">${esc(l.name)} <span class="meta">${esc(l.phone)}</span></label>`).join('')}</div>`:'<p class="meta">Add leads with phone numbers first.</p>'}<div class="acts"><button class="p">Create campaign</button></div></form>`+
+  S.campaigns.map(c=>{const cl=S.calls.filter(x=>c.leadIds.includes(x.leadId));return `<div class="card top"><div><h3>${esc(c.name)}</h3><div class="meta">${c.leadIds.length} leads · ${new Set(cl.map(x=>x.leadId)).size} called · ${cl.filter(x=>x.outcome==='INTERESTED').length} interested</div></div><button data-act="cdel" data-id="${c.id}">Delete</button></div>`}).join('')+'<p class="meta">Pick a campaign next to START at the top, then press START. Nothing calls until you press START.</p>';
+}
+const admin=()=>'<h2>Admin</h2><div id="adm" class="meta">Loading…</div>';
+async function loadAdmin(){
+  const a=$('#adm');if(!own()){a.textContent='Owner only.';return}
+  const j=await api('/api/admin');
+  a.innerHTML=`<div class="grid">${stat('Users',j.users.length)+stat('DNC numbers',j.dnc)}</div>`+tbl(['Email','Role','Daily limit','Used today','Leads','Calls',''],j.users.map(u=>[esc(u.email),u.role,`<input class="ul" data-id="${u.id}" type="number" value="${u.limit}" style="width:90px;margin:0">`,u.used,u.leads,u.calls,u.role==='owner'?'':`<button data-act="ulim" data-id="${u.id}">Save limit</button> <button data-act="udel" data-id="${u.id}">Remove</button>`]))+`<form id="usrf" class="card" style="margin-top:12px"><h3>Add a user</h3><label>Email</label><input id="ue" type="email" required><label>Temporary password (8+ characters)</label><input id="up" minlength="8" required><div class="acts"><button class="p">Add user</button></div></form>`;
+}
+function phone(){
+  const c=S.cfg||{},o=own(),ok=c.ready;
+  return `<h2>Phone & Alex</h2>${ok?'':'<div class="warn">Calling is not set up. '+(o?'Add your Vapi details below.':'Ask the owner to connect it.')+'</div>'}<div class="card"><div class="top"><h3>Calling connection</h3><span class="badge ${ok?'g':'r'}">${ok?'Ready':'Setup required'}</span></div>${o?`<form id="cfgf"><label>Vapi private API key ${c.hasKey?'(saved, leave blank to keep)':''}</label><input id="kk" type="password" autocomplete="off"><label>Vapi phone number ID</label><input id="kp" value="${esc(c.phone)}"><label>Voice ID</label><input id="kv" value="${esc(c.voice)}"><label>Alex greeting</label><textarea id="kg" rows="3">${esc(c.greeting)}</textarea><label>Extra instructions for Alex</label><textarea id="kx" rows="3">${esc(c.extra)}</textarea><div class="meta">Caller ID +1 (404) 860-1253 counts only after your provider verifies it. The key stays on the server and is never sent to the browser.</div><div class="acts"><button class="p">Save</button></div></form>`:'<div class="meta">Only the owner can change these settings.</div>'}</div><div class="card"><h3>Account</h3><div class="meta">${esc((S.me||{}).email)} · ${(S.me||{}).role}. VoxFlow is free to use. Provider costs for calls, voice and numbers are separate.</div><div class="acts"><button data-act="logout">Sign out</button><button data-act="exp">Export backup</button></div></div>`;
+}
+Object.assign(V,{'Find Leads':find,Campaigns:campaigns,Admin:admin,'Phone & Alex':phone});
+document.addEventListener('change',e=>{if(e.target.id==='camp')CS=e.target.value;if(e.target.id==='kprov'){S.cfg.provider=e.target.value;render()}});
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,id=b.dataset.id;
+  try{
+    if(a==='start'){await flush();await api('/api/start',{campaign:$('#camp').value});await load()}
+    if(a==='stop'){await api('/api/stop');await load()}
+    if(a==='fsearch')fsearch();
+    if(a==='fadd'){const x=FL[+b.dataset.i];b.textContent=addLead({name:x.name,category:x.industry,location:x.address,phone:x.phone,website:x.website,state:x.state,wstat:x.status})?'Added':'Already in leads';b.disabled=true;save()}
+    if(a==='cdel'){S.campaigns=S.campaigns.filter(c=>c.id!==id);save();render()}
+    if(a==='logout'){await api('/api/logout');location.reload()}
+    if(a==='ulim'){await api('/api/admin/user',{action:'update',id,limit:+document.querySelector('.ul[data-id="'+id+'"]').value});loadAdmin()}
+    if(a==='udel'){await api('/api/admin/user',{action:'delete',id});loadAdmin()}
+  }catch(err){}
+});
+document.addEventListener('submit',async e=>{
+  const f=e.target;
+  try{
+    if(f.id==='authf'){const j=await api(f.dataset.setup==='1'?'/api/signup':'/api/login',{email:$('#ae').value,password:$('#ap').value});if(j.ok){$('#login').remove();S.loaded=false;load()}else{const w=$('#aw');w.textContent=j.error||'Failed';w.hidden=false}}
+    if(f.id==='cfgf'){await api('/api/cfg',{key:$('#kk').value,phone:$('#kp').value,voice:$('#kv').value,greeting:$('#kg').value,extra:$('#kx').value});await load();render()}
+    if(f.id==='cmpf'){const ids=[...document.querySelectorAll('.cl:checked')].map(x=>x.value);S.campaigns.push({id:uid(),name:$('#cn').value.trim(),leadIds:ids});save();render()}
+    if(f.id==='usrf'){const j=await api('/api/admin/user',{action:'create',email:$('#ue').value,password:$('#up').value});if(j.ok)loadAdmin();else $('#adm').insertAdjacentHTML('afterbegin','<div class="warn">'+esc(j.error)+'</div>')}
+  }catch(err){}
+});
+
+let FLST='',CF='',CT='';
+const SORTL=(a,b)=>{const o={none:0,weak:1,has:2};return (o[a.wstat]??3)-(o[b.wstat]??3)||a.name.localeCompare(b.name)};
+function calls(){
+  const v=[...S.calls].reverse().filter(c=>(!q||(c.name+c.phone+c.summary).toLowerCase().includes(q))&&(!fs||c.outcome===fs)&&(!CF||day(c.ts)>=CF)&&(!CT||day(c.ts)<=CT));
+  return `<h2>Calls</h2><div class="bar"><input id="q" placeholder="Search calls" value="${esc(q)}"><select id="fs"><option value="">All outcomes</option>${Object.entries(OUT).map(([k,x])=>`<option value="${k}" ${fs===k?'selected':''}>${x}</option>`).join('')}</select><input id="cf" type="date" value="${CF}"><input id="ct" type="date" value="${CT}"></div>`+tbl(['Business','Phone','Date/time','Duration','Outcome','Package','Price','Instagram','WhatsApp','Next step','Summary',''],v.map(c=>[esc(c.name),esc(c.phone),fdt(c),c.dur?c.dur+' min':'-',OUT[c.outcome],esc(c.package||''),c.price?money(c.price):'',c.ig?'@'+esc(c.ig):'',esc(c.wa||''),esc(c.next||''),esc(c.summary||''),c.transcript?`<button data-act="tr" data-id="${c.id}">Transcript</button>`:'']));
+}
+function prof(id){
+  const l=lead(id),h=S.calls.filter(c=>c.leadId===id).reverse();
+  modal(`<h3>${esc(l.name)}</h3><div class="meta">${esc(l.category)} · ${esc(l.location)}<br>${esc(l.phone||'No phone')}${l.website?' · '+esc(l.website):''}${l.instagram?' · @'+esc(l.instagram):''}<br>Website: ${({none:'No website',weak:'Weak presence',has:'Has a website'})[l.wstat]||'Unknown'}</div><label style="margin-top:10px">State, 2 letters (sets calling hours)</label><input id="pst" value="${esc(l.state||'')}" maxlength="2"><div class="meta">${esc(l.notes||'')}</div>${h.map(c=>`<div class="card"><b>${OUT[c.outcome]}</b> <span class="meta">${fdt(c)}${c.package?' · '+esc(c.package)+' '+money(c.price):''}${c.fuDate?' · follow-up '+esc(c.fuDate+' '+(c.fuTime||'')):''}</span><div class="meta">${esc(c.summary||'')}</div></div>`).join('')||'<p class="meta">No calls yet.</p>'}<div class="acts"><button class="call" data-act="call" data-id="${id}" ${isDNC(l)||!l.phone?'disabled':''}>📞 CALL</button><button class="p" data-act="pstate" data-id="${id}">Save state</button><button data-act="close">Close</button></div>`);
+}
+function alex(){
+  const c=S.cfg||{};
+  return `<h2>Alex</h2><div class="card">${own()?`<form id="alexf"><label>Agent name</label><input id="ka" value="${esc(c.agent)}"><label>Voice ID</label><input id="kv" value="${esc(c.voice)}"><label>Greeting</label><textarea id="kg" rows="3">${esc(c.greeting)}</textarea><label>Extra instructions (business information, call objectives, objection handling, follow-up behavior)</label><textarea id="kx" rows="6">${esc(c.extra)}</textarea><div class="meta">Alex always keeps the honesty, opt-out and fixed-price rules.</div><div class="acts"><button class="p">Save</button><button type="button" data-act="sprompt">View full instructions</button></div></form>`:'<div class="meta">Only the owner can change Alex.</div>'}</div>`;
+}
+function phone(){
+  const c=S.cfg||{},ok=c.ready,pv=c.provider||'vapi';
+  const vapiTab=`<label>Vapi private API key ${c.hasKey?'(saved, leave blank to keep)':''}</label><input id="kk" type="password" autocomplete="off"><label>Vapi phone number ID</label><input id="kp" value="${esc(c.phone)}">`;
+  const apTab=`<label>AgentPhone API key ${c.hasAkey?'(saved, leave blank to keep)':''}</label><input id="ka" type="password" autocomplete="off"><label>AgentPhone number (the exact number shown on your AgentPhone dashboard)</label><input id="kan" value="${esc(c.anumber)}" placeholder="+1...">
+    <div class="warn">AgentPhone support is new here and unverified against their full docs. Outcome detection relies on Alex stating a closing summary line, which is less reliable than Vapi's structured output. Run a test call before using it on real leads.</div>`;
+  return `<h2>Phone</h2>${ok?'':'<div class="warn">Telephony provider not connected. Connect a provider in Phone Settings before making calls.</div>'}<div class="card"><div class="top"><h3>Provider connection</h3><span class="badge ${ok?'g':'r'}">${ok?'Keys saved':'Setup required'}</span></div>${own()?`
+  <label>Provider</label><select id="kprov"><option value="vapi" ${pv==='vapi'?'selected':''}>Vapi</option><option value="agentphone" ${pv==='agentphone'?'selected':''}>AgentPhone (unverified)</option></select>
+  <form id="phf">${pv==='agentphone'?apTab:vapiTab}<div class="meta">Intended caller ID: +1 (404) 860-1253. It counts as active only after your provider confirms it. Keys stay on the server.</div><div class="acts"><button class="p">Save</button><button type="button" data-act="tconn">Test connection</button></div></form><div id="tres" class="meta" style="margin:8px 0"></div><label>Test call to your own phone</label><input id="tp" type="tel" placeholder="Your US number"><div class="acts"><button data-act="tcall">Place test call</button></div>`:'<div class="meta">Only the owner can change these settings.</div>'}</div>`;
+}
+function settings(){
+  return `<h2>Settings</h2><div class="card"><h3>VoxFlow AI: FREE FOREVER</h3><div class="meta">${esc((S.me||{}).email)} · ${(S.me||{}).role}. Daily allowance: ${S.limit} calls. Calls remaining today: ${Math.max(0,S.limit-S.used)}. It resets each day. Costs from Vapi, the AI voice and model, and phone numbers are separate and are not free.</div></div><form id="pwf" class="card"><h3>Change password</h3><label>Current password</label><input id="po" type="password" required><label>New password (8+ characters)</label><input id="pn" type="password" minlength="8" required><div class="meta" id="pm"></div><div class="acts"><button class="p">Change password</button></div></form><div class="card"><div class="meta">Forgot the owner password? On the server run: node server.js --reset-owner NEWPASSWORD. The owner can reset other users in Admin.</div><div class="acts"><button data-act="exp">Export backup</button><button data-act="logout">Sign out</button></div></div>`;
+}
+function packages(){
+  const k=S.pk||{},o=own();
+  return `<h2>Packages</h2>${Object.keys(k).map(n=>`<div class="card"><h3>${n}</h3>${o?`<label>Price (USD)</label><input class="pp" data-n="${n}" type="number" value="${k[n].price}"><label>What's included</label><textarea class="pd" data-n="${n}" rows="3">${esc(k[n].desc)}</textarea>`:`<div class="meta">${money(k[n].price)}: ${esc(k[n].desc)}</div>`}</div>`).join('')}${o?'<div class="acts"><button class="p" data-act="pkgsave">Save packages</button></div>':''}<p class="meta">Alex uses these on her next call. She never negotiates or invents discounts.</p>`;
+}
+async function loadAdmin(){
+  const a=$('#adm');if(!own()){a.textContent='Owner only.';return}
+  const j=await api('/api/admin');
+  a.innerHTML=`<div class="grid">${stat('Users',j.users.length)+stat('DNC numbers',j.dnc)}</div>`+tbl(['Email','Role','Daily limit','Used today','Leads','Calls','Manage'],j.users.map(u=>[esc(u.email),u.role,`<input class="ul" data-id="${u.id}" type="number" value="${u.limit}" style="width:90px;margin:0">`,u.used,u.leads,u.calls,u.role==='owner'?'':`<button data-act="ulim" data-id="${u.id}">Save limit</button> <input class="ur" data-id="${u.id}" placeholder="New password" style="width:130px;margin:4px 0"> <button data-act="ureset" data-id="${u.id}">Reset password</button> <button data-act="udel" data-id="${u.id}">Remove</button>`]))+`<form id="usrf" class="card" style="margin-top:12px"><h3>Add a user</h3><label>Email</label><input id="ue" type="email" required><label>Temporary password (8+ characters)</label><input id="up" minlength="8" required><div class="acts"><button class="p">Add user</button></div></form>`;
+}
+Object.assign(V,{Alex:alex,Phone:phone,Settings:settings,Packages:packages,Calls:calls});
+document.addEventListener('change',e=>{if(e.target.id==='cf'){CF=e.target.value;render()}if(e.target.id==='ct'){CT=e.target.value;render()}});
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,id=b.dataset.id;
+  try{
+    if(a==='view')prof(id);
+    if(a==='pstate'){lead(id).state=$('#pst').value.trim().toUpperCase().slice(0,2);save();close();render()}
+    if(a==='tr'){const c=S.calls.find(x=>x.id===id);modal(`<h3>Transcript</h3><div class="meta" style="white-space:pre-wrap;max-height:60vh;overflow:auto">${esc(c.transcript)}</div>${shut}`)}
+    if(a==='sprompt'){const j=await api('/api/prompt');modal(`<h3>Alex's full instructions</h3><div class="meta" style="white-space:pre-wrap;max-height:60vh;overflow:auto">${esc(j.prompt)}</div>${shut}`)}
+    if(a==='tconn'){$('#tres').textContent='Testing…';const j=await api('/api/test');$('#tres').innerHTML=j.ok?'Connected to the provider. Number: '+esc(j.number||'unknown')+(j.status?' · status: '+esc(j.status):'')+'. Confirm caller ID verification in your provider dashboard.':'<span class="r">'+esc(j.error)+'</span>'}
+    if(a==='tcall'){const j=await api('/api/testcall',{phone:$('#tp').value});$('#tres').innerHTML=j.ok?'Test call requested. Your phone should ring shortly.':'<span class="r">'+esc(j.error)+'</span>'}
+    if(a==='ureset'){await api('/api/admin/user',{action:'reset',id,password:document.querySelector('.ur[data-id="'+id+'"]').value});loadAdmin()}
+    if(a==='pkgsave'){const pk={};document.querySelectorAll('.pp').forEach(x=>{pk[x.dataset.n]={price:+x.value}});document.querySelectorAll('.pd').forEach(x=>{pk[x.dataset.n].desc=x.value});await api('/api/packages',{pk});await load();b.textContent='Saved'}
+  }catch(err){}
+});
+document.addEventListener('submit',async e=>{
+  const f=e.target;
+  try{
+    if(f.id==='alexf'){await api('/api/cfg',{agent:$('#ka').value,voice:$('#kv').value,greeting:$('#kg').value,extra:$('#kx').value});await load();render()}
+    if(f.id==='phf'){
+      const prov=S.cfg.provider||'vapi';
+      const body=prov==='agentphone'?{provider:'agentphone',akey:$('#ka').value,anumber:$('#kan').value}:{provider:'vapi',key:$('#kk').value,phone:$('#kp').value};
+      await api('/api/cfg',body);await load();render();
+    }
+    if(f.id==='pwf'){const j=await api('/api/password',{old:$('#po').value,new:$('#pn').value});$('#pm').textContent=j.ok?'Password changed.':j.error;if(j.ok)f.reset()}
+  }catch(err){}
+});
+
+const LOGO='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>';
+const ICON={Dashboard:'<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>','Find Leads':'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',Leads:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.7c1.8.7 3 2.3 3.4 5.3"/>',Interested:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',Instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',WhatsApp:'<path d="M21 12a8 8 0 0 1-11.8 7L3 21l2-5.3A8 8 0 1 1 21 12z"/>',Calls:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',Campaigns:'<path d="M5 21V4M5 4h13l-2 4 2 4H5"/>','Follow-ups':'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',Packages:'<path d="M21 8 12 3 3 8v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/>',Alex:'<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V5M9 13h.01M15 13h.01M9 16.5h6"/>',Phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',Admin:'<path d="M12 3 4 6v6c0 4.5 3.2 7.5 8 9 4.8-1.5 8-4.5 8-9V6z"/>',Settings:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>'};
+const ic=t=>`<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ICON[t]||''}</svg>`;
+function nav(){
+  const r=S.run||{};
+  $('#nav').innerHTML=`<div class="brand"><span class="logo">${LOGO}</span><span><b>VOXFLOW AI</b><small>AI-Powered Business Outreach</small></span></div>`+TABS.map(t=>`<button class="${t===tab?'on':''}" data-act="tab" data-v="${t}">${ic(t)}<span>${t}</span></button>`).join('')+`<div class="foot"><button data-home style="width:100%;justify-content:center;border:1px solid rgba(255,255,255,.15);margin-bottom:10px;font-size:12px">← Back to website</button><span class="pill ${r.on?'on':'off'}">${r.on?'RUNNING':'STOPPED'}</span><div>${esc((S.me||{}).email||'')}</div></div>`;
+}
+
+function enterApp(){document.body.classList.add('in');window.scrollTo(0,0);load().catch(()=>{})}
+function goHome(){document.body.classList.remove('in');const l=$('#login');if(l)l.remove();window.scrollTo(0,0)}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');
+  if(g){e.preventDefault();const t=document.getElementById(g.dataset.go);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});$('#lpm').classList.remove('open');return}
+  if(e.target.closest('[data-enter]')){e.preventDefault();$('#lpm').classList.remove('open');enterApp();return}
+  if(e.target.closest('[data-home]')){goHome();return}
+  if(e.target.closest('#lpburger'))$('#lpm').classList.toggle('open');
+});
+const bh=()=>{const b=document.getElementById('pvb');document.documentElement.style.setProperty('--bh',(b?b.offsetHeight:0)+'px')};bh();addEventListener('resize',bh);
+setInterval(()=>{if(document.body.classList.contains('in'))load().catch(()=>{})},4000);
+
+</script>
+</body>
+</html>
