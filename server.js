@@ -63,7 +63,10 @@ const pw = (p, s) => crypto.scryptSync(String(p), s, 32).toString('hex');
 const same = (a, b) => a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 function addUser(email, p, role) { const id = rid(), s = rid(); db.users[id] = { id, email: String(email).trim().toLowerCase(), salt: s, hash: pw(p, s), role, limit: 500 }; return id; }
 const usedToday = u => (db.used[u] && db.used[u].d === today() ? db.used[u] : (db.used[u] = { d: today(), n: 0 }));
-
+if (process.env.AGENTPHONE_API_KEY) { db.cfg.akey = process.env.AGENTPHONE_API_KEY; db.cfg.provider = 'agentphone'; }
+if (process.env.AGENTPHONE_NUMBER) db.cfg.anumber = process.env.AGENTPHONE_NUMBER;
+if (process.env.VAPI_API_KEY) db.cfg.key = process.env.VAPI_API_KEY;
+if (process.env.VAPI_PHONE_NUMBER_ID) db.cfg.phone = process.env.VAPI_PHONE_NUMBER_ID;
 // AgentPhone is a second, newer provider. Built from their public SDK docs and an unverified
 // REST surface (no access to their full official reference), so treat it as untested until a
 // real test call confirms it. Outcome detection asks Alex to state a tagged line at the end of
