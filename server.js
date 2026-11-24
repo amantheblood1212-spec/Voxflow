@@ -68,7 +68,10 @@ if (process.env.AGENTPHONE_NUMBER) db.cfg.anumber = process.env.AGENTPHONE_NUMBE
 if (process.env.VAPI_API_KEY) db.cfg.key = process.env.VAPI_API_KEY;
 if (process.env.VAPI_PHONE_NUMBER_ID) db.cfg.phone = process.env.VAPI_PHONE_NUMBER_ID;
 // AgentPhone is a second, newer provider. Built from their public SDK docs and an unverified
-// REST surface (no access to their full official reference), so treat it as untested until a
+// REST surif (process.env.AGENTPHONE_API_KEY) { db.cfg.akey = process.env.AGENTPHONE_API_KEY; db.cfg.provider = 'agentphone'; }
+if (process.env.AGENTPHONE_NUMBER) db.cfg.anumber = process.env.AGENTPHONE_NUMBER;
+if (process.env.VAPI_API_KEY) db.cfg.key = process.env.VAPI_API_KEY;
+if (process.env.VAPI_PHONE_NUMBER_ID) db.cfg.phone = process.env.VAPI_PHONE_NUMBER_ID;face (no access to their full official reference), so treat it as untested until a
 // real test call confirms it. Outcome detection asks Alex to state a tagged line at the end of
 // the call and parses it from the transcript, since structured-output extraction isn't confirmed
 // to exist on this provider the way it does on Vapi.
