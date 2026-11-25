@@ -1,4 +1,5 @@
-/* VoxFlow AI server. Node 18+, nothing to install. Run: node server.js
+/if (process.env.AGENTPHONE_API_KEY) { db.cfg.akey = process.env.AGENTPHONE_API_KEY; db.cfg.provider = 'agentphone'; }
+if (process.env.AGENTPHONE_NUMBER) db.cfg.anumber = process.env.AGENTPHONE_NUMBER;* VoxFlow AI server. Node 18+, nothing to install. Run: node server.js
    Optional settings: PORT, DB_FILE. Put it behind https when it is public. */
 const http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto');
 const DBF = process.env.DB_FILE || path.join(__dirname, 'data.json'), PORT = process.env.PORT || 3000;
